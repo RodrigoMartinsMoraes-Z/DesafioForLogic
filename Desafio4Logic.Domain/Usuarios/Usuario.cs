@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Desafio4Logic.Domain.Usuarios
 {
     public class Usuario
     {
-        private readonly string senha;
+        private string senha;
 
         public int Id { get; set; }
         public string Email { get; set; }
-        public string Senha { get => senha; set => EncriptarSenha(); }
+        public string Senha { get => senha; private set => senha = EncriptarSenha(); }
 
+        /// <summary>
+        /// encripta a senha utilizando o email como salt
+        /// </summary>
+        /// <returns></returns>
         private string EncriptarSenha()
         {
-            return BCrypt.Net.BCrypt.HashPassword(Senha);
+            return BCrypt.Net.BCrypt.HashPassword(Senha, Email);
         }
     }
 }
