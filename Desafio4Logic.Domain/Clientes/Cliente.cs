@@ -1,4 +1,5 @@
-﻿using Desafio4Logic.Domain.Usuarios;
+﻿using Desafio4Logic.Domain.Avaliacoes;
+using Desafio4Logic.Domain.Usuarios;
 
 using System;
 using System.Collections.Generic;
@@ -19,5 +20,6 @@ namespace Desafio4Logic.Domain.Clientes
         public DateTime DataCadastro { get => dataCadastro; private set => dataCadastro = DateTime.Today; }
 
         public virtual Usuario Usuario { get; set; }
+        public virtual ICollection<Avaliacao> Avaliacoes { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace Desafio4Logic.Domain.Avaliacoes
         public int Id { get; set; }
         public int IdCliente { get; set; }
         public int Nota { get; set; }
-        public DateTime QuandoAvaliado { get; set; }
+        public DateTime? QuandoAvaliado { get; set; }
 
         public virtual Cliente Cliente { get; set; }
     }
