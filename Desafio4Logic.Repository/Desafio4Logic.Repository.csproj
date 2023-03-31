@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Desafio4Logic.Interfaces\Desafio4Logic.Interfaces.csproj" />
+    <ProjectReference Include="..\Desafio4Logic.Models\Desafio4Logic.Models.csproj" />
+  </ItemGroup>
+
 </Project>

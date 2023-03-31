@@ -5,6 +5,8 @@ using Desafio4Logic.Domain.Usuarios;
 
 using Microsoft.EntityFrameworkCore;
 
+using System.Threading.Tasks;
+
 namespace Desafio4Logic.Context
 {
     public class SQLContext : DbContext
@@ -26,6 +28,16 @@ namespace Desafio4Logic.Context
             modelBuilder.ApplyConfiguration(new UsuarioMapping());
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        public override int SaveChanges()
+        {
+            return base.SaveChanges();
+        }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await base.SaveChangesAsync();
         }
     }
 }
