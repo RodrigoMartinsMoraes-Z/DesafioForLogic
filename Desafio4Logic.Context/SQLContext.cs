@@ -15,7 +15,7 @@ namespace Desafio4Logic.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=192.168.0.37:1433;Initial Catalog=Desafio4Logic;User ID=teste;Password=Teste123;");
+            optionsBuilder.UseSqlServer("Data Source=192.168.0.37,1433;Initial Catalog=Desafio4Logic;User ID=teste;Password=Teste123;");
 
         }
 
