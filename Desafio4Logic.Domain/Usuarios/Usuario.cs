@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Desafio4Logic.Domain.Clientes;
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,8 @@ namespace Desafio4Logic.Domain.Usuarios
         public int Id { get; set; }
         public string Email { get; set; }
         public string Senha { get => senha; private set => senha = EncriptarSenha(); }
+
+        public virtual Cliente Cliente { get; set; }
 
         /// <summary>
         /// encripta a senha utilizando o email como salt

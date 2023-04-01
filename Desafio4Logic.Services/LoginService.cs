@@ -31,12 +31,12 @@ namespace Desafio4Logic.Services
             var usuario = _mapper.Map<Usuario>(usuarioModel);
             var result = await _validator.ValidateAsync(usuario);
             if (!result.IsValid)
-                return new RespostaPadrao() { HtmlCode = System.Net.HttpStatusCode.BadRequest, Message = result.Errors.First().ErrorMessage };
+                return new RespostaPadrao() { Status = System.Net.HttpStatusCode.BadRequest, Message = result.Errors.First().ErrorMessage };
 
             var usuarioDb = await _usuarioRepository.BuscarUsuarioPorEmail(usuario.Email);
             var senhaCorreta = BCrypt.Net.BCrypt.Verify(usuario.Senha, usuarioDb.Senha);
 
-            return senhaCorreta ? new RespostaPadrao() { HtmlCode = System.Net.HttpStatusCode.OK } : new RespostaPadrao() { HtmlCode = System.Net.HttpStatusCode.Unauthorized };
+            return senhaCorreta ? new RespostaPadrao() { Status = System.Net.HttpStatusCode.OK } : new RespostaPadrao() { Status = System.Net.HttpStatusCode.Unauthorized };
         }
     }
 }
