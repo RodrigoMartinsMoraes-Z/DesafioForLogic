@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Desafio4Logic.Domain\Desafio4Logic.Domain.csproj" />
+    <ProjectReference Include="..\Desafio4Logic.Models\Desafio4Logic.Models.csproj" />
   </ItemGroup>
 
 </Project>

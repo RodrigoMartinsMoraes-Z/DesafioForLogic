@@ -2,6 +2,8 @@
 using Desafio4Logic.Interfaces.Context;
 using Desafio4Logic.Interfaces.Repository;
 
+using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -39,5 +41,9 @@ namespace Desafio4Logic.Repository.Usuarios
             await _sqlContext.SaveChangesAsync();
         }
 
+        public async Task<Usuario> BuscarUsuarioPorEmail(string email)
+        {
+            return await _sqlContext.Usuarios.FirstOrDefaultAsync(u => u.Email == email);
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace Desafio4Logic.Interfaces.Repository
     {
         Task AtualizarUsuario(Usuario usuario);
         Task<Usuario> BuscarUsuarioPorId(int id);
+        Task<Usuario> BuscarUsuarioPorEmail(string email);
         Task<Usuario> SalvarUsuario(Usuario usuario);
     }
 }
