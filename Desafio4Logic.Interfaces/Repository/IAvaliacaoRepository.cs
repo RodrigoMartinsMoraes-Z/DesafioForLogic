@@ -10,5 +10,6 @@ namespace Desafio4Logic.Interfaces.Repository
         Task<Avaliacao> SalvarAvaliacao(Avaliacao avaliacao);
         Task<List<Avaliacao>> BuscarAvaliacoesPorMesAno(int mes, int ano);
         Task<List<Avaliacao>> BuscarAvaliacoesPorCliente(int idCliente);
+        Task<bool> VerificaSeExisteAvaliacao(int mes, int ano, int idCliente);
     }
 }

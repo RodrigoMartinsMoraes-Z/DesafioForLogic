@@ -2,6 +2,8 @@
 using Desafio4Logic.Interfaces.Context;
 using Desafio4Logic.Interfaces.Repository;
 
+using Microsoft.EntityFrameworkCore;
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,5 +53,13 @@ namespace Desafio4Logic.Repository.Avaliacoes
             await Task.CompletedTask;
             return avaliacoes.ToList();
         }
+
+        public async Task<bool> VerificaSeExisteAvaliacao(int mes, int ano, int idCliente) => await _sqlContext.Avaliacoes.AnyAsync(a =>
+                                                                                                                                    a.IdCliente == idCliente &&
+                                                                                                                                    a.QuandoAvaliado.Value.Month == mes &&
+                                                                                                                                    a.QuandoAvaliado.Value.Year == ano);            
+        
+        
+            
     }
 }
