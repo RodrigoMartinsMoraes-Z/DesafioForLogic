@@ -9,7 +9,7 @@ namespace Desafio4Logic.ModelMapper
     {
         public UsuarioModelMapper()
         {
-            CreateMap<Usuario, UsuarioModel>().ReverseMap();
+            _ = CreateMap<Usuario, UsuarioModel>().ReverseMap();
         }
     }
 }

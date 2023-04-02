@@ -17,15 +17,15 @@ namespace Desafio4Logic.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=192.168.0.37,1433;Initial Catalog=Desafio4Logic;User ID=teste;Password=Teste123;");
+            _ = optionsBuilder.UseSqlServer("Data Source=192.168.0.37,1433;Initial Catalog=Desafio4Logic;User ID=teste;Password=Teste123;");
 
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AvaliacaoMapping());
-            modelBuilder.ApplyConfiguration(new ClienteMapping());
-            modelBuilder.ApplyConfiguration(new UsuarioMapping());
+            _ = modelBuilder.ApplyConfiguration(new AvaliacaoMapping());
+            _ = modelBuilder.ApplyConfiguration(new ClienteMapping());
+            _ = modelBuilder.ApplyConfiguration(new UsuarioMapping());
 
             base.OnModelCreating(modelBuilder);
         }

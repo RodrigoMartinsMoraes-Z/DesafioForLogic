@@ -8,8 +8,8 @@ namespace Desafio4Logic.Services.Validation
     {
         public AvaliacaoValidator()
         {
-            RuleFor(x => x.Nota).GreaterThanOrEqualTo(0).LessThanOrEqualTo(10);
-            RuleFor(x => x.Motivo).MinimumLength(1).MaximumLength(500);
+            _ = RuleFor(x => x.Nota).GreaterThanOrEqualTo(0).LessThanOrEqualTo(10);
+            _ = RuleFor(x => x.Motivo).MinimumLength(1).MaximumLength(500);
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Desafio4Logic.Domain.Clientes;
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Desafio4Logic.Domain.Avaliacoes
 {

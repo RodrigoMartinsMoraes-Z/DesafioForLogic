@@ -10,7 +10,7 @@ namespace Desafio4Logic.Models.Clientes
     {
         private DateTime dataCadastro;
 
-  
+
         public string Nome { get; set; }
         public string NomeContato { get; set; }
         public string CNPJ { get; set; }

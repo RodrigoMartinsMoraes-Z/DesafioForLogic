@@ -1,10 +1,5 @@
 ﻿using Desafio4Logic.Domain.Clientes;
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Desafio4Logic.Domain.Usuarios
 {
     public class Usuario

@@ -8,8 +8,6 @@ using Desafio4Logic.Models.Clientes;
 using FluentValidation;
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Desafio4Logic.Services
@@ -31,8 +29,8 @@ namespace Desafio4Logic.Services
         {
             try
             {
-                var clienteDb = _clienteRepository.BuscarClientePorCNPJ(clienteModel.CNPJ);
-                var cliente = _mapper.Map<Cliente>(clienteModel);
+                Task<Cliente> clienteDb = _clienteRepository.BuscarClientePorCNPJ(clienteModel.CNPJ);
+                Cliente cliente = _mapper.Map<Cliente>(clienteModel);
                 cliente.Id = clienteDb.Id;
                 cliente.IdUsuario = clienteDb.Id;
                 await _clienteRepository.AtualizarCliente(cliente);

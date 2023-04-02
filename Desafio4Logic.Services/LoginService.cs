@@ -28,13 +28,15 @@ namespace Desafio4Logic.Services
 
         public async Task<RespostaPadrao> RealizarLogin(UsuarioModel usuarioModel)
         {
-            var usuario = _mapper.Map<Usuario>(usuarioModel);
-            var result = await _validator.ValidateAsync(usuario);
+            Usuario usuario = _mapper.Map<Usuario>(usuarioModel);
+            FluentValidation.Results.ValidationResult result = await _validator.ValidateAsync(usuario);
             if (!result.IsValid)
+            {
                 return new RespostaPadrao() { Status = System.Net.HttpStatusCode.BadRequest, Message = result.Errors.First().ErrorMessage };
+            }
 
-            var usuarioDb = await _usuarioRepository.BuscarUsuarioPorEmail(usuario.Email);
-            var senhaCorreta = BCrypt.Net.BCrypt.Verify(usuario.Senha, usuarioDb.Senha);
+            Usuario usuarioDb = await _usuarioRepository.BuscarUsuarioPorEmail(usuario.Email);
+            bool senhaCorreta = BCrypt.Net.BCrypt.Verify(usuario.Senha, usuarioDb.Senha);
 
             return senhaCorreta ? new RespostaPadrao() { Status = System.Net.HttpStatusCode.OK } : new RespostaPadrao() { Status = System.Net.HttpStatusCode.Unauthorized };
         }

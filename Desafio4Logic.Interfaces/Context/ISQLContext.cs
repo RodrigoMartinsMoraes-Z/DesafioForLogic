@@ -4,9 +4,6 @@ using Desafio4Logic.Domain.Usuarios;
 
 using Microsoft.EntityFrameworkCore;
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Desafio4Logic.Interfaces.Context

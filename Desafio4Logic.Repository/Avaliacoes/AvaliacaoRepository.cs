@@ -4,7 +4,6 @@ using Desafio4Logic.Interfaces.Repository;
 
 using Microsoft.EntityFrameworkCore;
 
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,8 +23,8 @@ namespace Desafio4Logic.Repository.Avaliacoes
 
         public async Task<Avaliacao> SalvarAvaliacao(Avaliacao avaliacao)
         {
-            _sqlContext.Avaliacoes.Add(avaliacao);
-            await _sqlContext.SaveChangesAsync();
+            _ = _sqlContext.Avaliacoes.Add(avaliacao);
+            _ = await _sqlContext.SaveChangesAsync();
             return avaliacao;
         }
 
@@ -37,7 +36,7 @@ namespace Desafio4Logic.Repository.Avaliacoes
         /// <returns></returns>
         public async Task<List<Avaliacao>> BuscarAvaliacoesPorMesAno(int mes, int ano)
         {
-            var avaliacoes = _sqlContext.Avaliacoes.Where(a => a.QuandoAvaliado.Value.Month == mes && a.QuandoAvaliado.Value.Year == ano);
+            IQueryable<Avaliacao> avaliacoes = _sqlContext.Avaliacoes.Where(a => a.QuandoAvaliado.Value.Month == mes && a.QuandoAvaliado.Value.Year == ano);
             await Task.CompletedTask;
             return avaliacoes.ToList();
         }
@@ -49,17 +48,17 @@ namespace Desafio4Logic.Repository.Avaliacoes
         /// <returns></returns>
         public async Task<List<Avaliacao>> BuscarAvaliacoesPorCliente(int idCliente)
         {
-            var avaliacoes = _sqlContext.Avaliacoes.Where(a => a.IdCliente == idCliente);
+            IQueryable<Avaliacao> avaliacoes = _sqlContext.Avaliacoes.Where(a => a.IdCliente == idCliente);
             await Task.CompletedTask;
             return avaliacoes.ToList();
         }
 
-        public async Task<bool> VerificaSeExisteAvaliacao(int mes, int ano, int idCliente) => await _sqlContext.Avaliacoes.AnyAsync(a =>
+        public async Task<bool> VerificaSeExisteAvaliacao(int mes, int ano, int idCliente)
+        {
+            return await _sqlContext.Avaliacoes.AnyAsync(a =>
                                                                                                                                     a.IdCliente == idCliente &&
                                                                                                                                     a.QuandoAvaliado.Value.Month == mes &&
-                                                                                                                                    a.QuandoAvaliado.Value.Year == ano);            
-        
-        
-            
+                                                                                                                                    a.QuandoAvaliado.Value.Year == ano);
+        }
     }
 }

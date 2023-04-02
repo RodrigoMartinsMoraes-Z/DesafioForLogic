@@ -3,19 +3,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Desafio4Logic.Context.Mapping
 {
     public class AvaliacaoMapping : IEntityTypeConfiguration<Avaliacao>
     {
         public void Configure(EntityTypeBuilder<Avaliacao> builder)
         {
-            builder.HasKey(a => a.Id);
+            _ = builder.HasKey(a => a.Id);
 
-            builder.HasOne(a => a.Cliente).WithMany(c => c.Avaliacoes).HasForeignKey(a => a.IdCliente);
+            _ = builder.HasOne(a => a.Cliente).WithMany(c => c.Avaliacoes).HasForeignKey(a => a.IdCliente);
         }
     }
 }

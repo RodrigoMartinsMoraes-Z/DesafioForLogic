@@ -31,16 +31,16 @@ namespace Desafio4Logic.Repository.Clientes
 
         public async Task<Cliente> SalvarCliente(Cliente cliente)
         {
-            await _sqlContext.Clientes.AddAsync(cliente);
-            await _sqlContext.SaveChangesAsync();
+            _ = await _sqlContext.Clientes.AddAsync(cliente);
+            _ = await _sqlContext.SaveChangesAsync();
 
             return cliente;
         }
 
         public async Task AtualizarCliente(Cliente cliente)
         {
-            _sqlContext.Clientes.Update(cliente);
-            await _sqlContext.SaveChangesAsync();
+            _ = _sqlContext.Clientes.Update(cliente);
+            _ = await _sqlContext.SaveChangesAsync();
         }
     }
 }

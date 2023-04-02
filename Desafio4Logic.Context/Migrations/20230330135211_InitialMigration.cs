@@ -1,5 +1,6 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+using System;
 
 namespace Desafio4Logic.Context.Migrations
 {
@@ -7,7 +8,7 @@ namespace Desafio4Logic.Context.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
+            _ = migrationBuilder.CreateTable(
                 name: "Usuarios",
                 columns: table => new
                 {
@@ -18,10 +19,10 @@ namespace Desafio4Logic.Context.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuarios", x => x.Id);
+                    _ = table.PrimaryKey("PK_Usuarios", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
+            _ = migrationBuilder.CreateTable(
                 name: "Clientes",
                 columns: table => new
                 {
@@ -36,8 +37,8 @@ namespace Desafio4Logic.Context.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clientes", x => x.Id);
-                    table.ForeignKey(
+                    _ = table.PrimaryKey("PK_Clientes", x => x.Id);
+                    _ = table.ForeignKey(
                         name: "FK_Clientes_Usuarios_IdUsuario",
                         column: x => x.IdUsuario,
                         principalTable: "Usuarios",
@@ -45,7 +46,7 @@ namespace Desafio4Logic.Context.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
+            _ = migrationBuilder.CreateTable(
                 name: "Avaliacoes",
                 columns: table => new
                 {
@@ -57,8 +58,8 @@ namespace Desafio4Logic.Context.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Avaliacoes", x => x.Id);
-                    table.ForeignKey(
+                    _ = table.PrimaryKey("PK_Avaliacoes", x => x.Id);
+                    _ = table.ForeignKey(
                         name: "FK_Avaliacoes_Clientes_IdCliente",
                         column: x => x.IdCliente,
                         principalTable: "Clientes",
@@ -66,12 +67,12 @@ namespace Desafio4Logic.Context.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
+            _ = migrationBuilder.CreateIndex(
                 name: "IX_Avaliacoes_IdCliente",
                 table: "Avaliacoes",
                 column: "IdCliente");
 
-            migrationBuilder.CreateIndex(
+            _ = migrationBuilder.CreateIndex(
                 name: "IX_Clientes_IdUsuario",
                 table: "Clientes",
                 column: "IdUsuario",
@@ -80,13 +81,13 @@ namespace Desafio4Logic.Context.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
+            _ = migrationBuilder.DropTable(
                 name: "Avaliacoes");
 
-            migrationBuilder.DropTable(
+            _ = migrationBuilder.DropTable(
                 name: "Clientes");
 
-            migrationBuilder.DropTable(
+            _ = migrationBuilder.DropTable(
                 name: "Usuarios");
         }
     }

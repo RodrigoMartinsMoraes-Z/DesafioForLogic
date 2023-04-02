@@ -4,10 +4,6 @@ using Desafio4Logic.Interfaces.Repository;
 
 using Microsoft.EntityFrameworkCore;
 
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Desafio4Logic.Repository.Usuarios
@@ -25,8 +21,8 @@ namespace Desafio4Logic.Repository.Usuarios
 
         public async Task<Usuario> SalvarUsuario(Usuario usuario)
         {
-            await _sqlContext.Usuarios.AddAsync(usuario);
-            await _sqlContext.SaveChangesAsync();
+            _ = await _sqlContext.Usuarios.AddAsync(usuario);
+            _ = await _sqlContext.SaveChangesAsync();
             return usuario;
         }
 
@@ -37,8 +33,8 @@ namespace Desafio4Logic.Repository.Usuarios
 
         public async Task AtualizarUsuario(Usuario usuario)
         {
-            _sqlContext.Usuarios.Update(usuario);
-            await _sqlContext.SaveChangesAsync();
+            _ = _sqlContext.Usuarios.Update(usuario);
+            _ = await _sqlContext.SaveChangesAsync();
         }
 
         public async Task<Usuario> BuscarUsuarioPorEmail(string email)
