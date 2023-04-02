@@ -1,0 +1,24 @@
+{
+  "ServerUri": "http://192.168.0.37:9000/",
+  "Organization": null,
+  "ProjectKey": "TesteForlogic",
+  "ProjectName": "TesteForlogic",
+  "Profiles": {
+    "Js": {
+      "ProfileKey": "AYdCQ9-UzXkESXd9CphH",
+      "ProfileTimestamp": "2023-04-02T13:59:17Z"
+    },
+    "Ts": {
+      "ProfileKey": "AYdCQ_A8zXkESXd9CqxW",
+      "ProfileTimestamp": "2023-04-02T13:59:21Z"
+    },
+    "Secrets": {
+      "ProfileKey": "AYdCQ-HDzXkESXd9Cptq",
+      "ProfileTimestamp": "2023-04-02T13:59:17Z"
+    },
+    "CSharp": {
+      "ProfileKey": "AYdCQ-Q-zXkESXd9Cp4C",
+      "ProfileTimestamp": "2023-04-02T13:59:18Z"
+    }
+  }
+}

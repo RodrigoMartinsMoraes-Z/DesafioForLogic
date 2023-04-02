@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desafio4Logic.Api.Avaliacao
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio4Logic.ModelMapper", "Desafio4Logic.ModelMapper\Desafio4Logic.ModelMapper.csproj", "{D23252C8-0925-4091-ABB3-B81662D64562}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio4Logic.TestexUnit.Services", "Desafio4Logic.TestexUnit.Services\Desafio4Logic.TestexUnit.Services.csproj", "{F2CFD6ED-D2E7-40D1-9A2E-7D27227F582C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{D23252C8-0925-4091-ABB3-B81662D64562}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D23252C8-0925-4091-ABB3-B81662D64562}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D23252C8-0925-4091-ABB3-B81662D64562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2CFD6ED-D2E7-40D1-9A2E-7D27227F582C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2CFD6ED-D2E7-40D1-9A2E-7D27227F582C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2CFD6ED-D2E7-40D1-9A2E-7D27227F582C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2CFD6ED-D2E7-40D1-9A2E-7D27227F582C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
