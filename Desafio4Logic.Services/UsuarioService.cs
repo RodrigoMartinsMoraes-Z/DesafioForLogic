@@ -41,6 +41,10 @@ namespace Desafio4Logic.Services
             if (cnpjExiste != null)
                 return new RespostaPadrao() { Status = System.Net.HttpStatusCode.Conflict, Message = "Já existe um cliente com este CNPJ." };
 
+            var emailExiste = await _usuarioRepository.BuscarUsuarioPorEmail(usuarioModel.Email);
+            if (emailExiste != null)
+                return new RespostaPadrao() { Status = System.Net.HttpStatusCode.Conflict, Message = "Já existe um usuario com este email." };
+
             Usuario usuario = _mapper.Map<Usuario>(usuarioModel);
             Cliente cliente = _mapper.Map<Cliente>(usuarioModel.Cliente);
 

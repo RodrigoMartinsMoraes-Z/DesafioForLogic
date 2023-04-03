@@ -21,10 +21,17 @@ namespace Desafio4Logic.Api.Usuario.Controllers
         }
 
         [HttpPost]
-        [Route("Cadastro")]
+        [Route("cadastro")]
         public async Task<RespostaPadrao> CadastrarUsuario(UsuarioModel model)
         {
             return await _usuarioService.NovoUsuario(model);
+        }
+
+        [HttpPut]
+        [Route("atualizar-senha")]
+        public async Task<RespostaPadrao> AtualizarSenha(UsuarioModel usuarioModel, string novaSenha)
+        {
+            return await _usuarioService.AlterarSenha(usuarioModel, novaSenha);
         }
     }
 }
