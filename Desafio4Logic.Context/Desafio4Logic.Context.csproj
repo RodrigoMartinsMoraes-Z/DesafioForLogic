@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Desafio4Logic.Domain\Desafio4Logic.Domain.csproj" />
+    <ProjectReference Include="..\Desafio4Logic.Interfaces\Desafio4Logic.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

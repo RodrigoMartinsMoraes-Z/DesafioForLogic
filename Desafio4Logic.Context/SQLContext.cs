@@ -2,6 +2,7 @@
 using Desafio4Logic.Domain.Avaliacoes;
 using Desafio4Logic.Domain.Clientes;
 using Desafio4Logic.Domain.Usuarios;
+using Desafio4Logic.Interfaces.Context;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Desafio4Logic.Context
 {
-    public class SQLContext : DbContext
+    public class SQLContext : DbContext, ISQLContext
     {
         public DbSet<Avaliacao> Avaliacoes { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
