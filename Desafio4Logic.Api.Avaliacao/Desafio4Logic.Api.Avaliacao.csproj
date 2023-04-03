@@ -25,5 +25,9 @@
     <ProjectReference Include="..\Desafio4Logic.Services\Desafio4Logic.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 
 </Project>

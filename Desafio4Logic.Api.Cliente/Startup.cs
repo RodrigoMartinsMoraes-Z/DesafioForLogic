@@ -61,6 +61,7 @@ namespace Desafio4Logic.Api.Cliente
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IAvaliacaoService, AvaliacaoService>();
+            services.AddScoped<IClienteService, ClienteService>();
 
             services.AddSwaggerGen(c =>
             {

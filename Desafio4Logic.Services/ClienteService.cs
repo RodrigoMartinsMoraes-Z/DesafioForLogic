@@ -2,6 +2,7 @@
 
 using Desafio4Logic.Domain.Clientes;
 using Desafio4Logic.Interfaces.Repository;
+using Desafio4Logic.Interfaces.Services;
 using Desafio4Logic.Models;
 using Desafio4Logic.Models.Clientes;
 
@@ -13,7 +14,9 @@ using System.Threading.Tasks;
 
 namespace Desafio4Logic.Services
 {
-    public class ClienteService
+
+
+    public class ClienteService : IClienteService
     {
         private readonly IValidator<Cliente> _validator;
         private readonly IMapper _mapper;
