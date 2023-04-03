@@ -10,8 +10,6 @@ namespace Desafio4Logic.Domain.Usuarios
         public string Email { get; set; }
         public string Senha { get => senha; set => senha = EncriptarSenha(value); }
 
-        //public virtual Cliente Cliente { get; set; }
-
         /// <summary>
         /// encripta a senha utilizando o email como salt
         /// </summary>

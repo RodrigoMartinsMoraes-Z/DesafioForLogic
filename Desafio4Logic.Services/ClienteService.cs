@@ -8,6 +8,7 @@ using Desafio4Logic.Models.Clientes;
 using FluentValidation;
 
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Desafio4Logic.Services
@@ -31,6 +32,10 @@ namespace Desafio4Logic.Services
             {
                 Task<Cliente> clienteDb = _clienteRepository.BuscarClientePorCNPJ(clienteModel.CNPJ);
                 Cliente cliente = _mapper.Map<Cliente>(clienteModel);
+                var valid = _validator.Validate(cliente);
+                if (valid != null && !valid.IsValid)
+                    return new RespostaPadrao() { Status = System.Net.HttpStatusCode.BadRequest, Message = valid.Errors.First().ErrorMessage };
+
                 cliente.Id = clienteDb.Id;
                 cliente.IdUsuario = clienteDb.Id;
                 await _clienteRepository.AtualizarCliente(cliente);

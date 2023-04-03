@@ -36,6 +36,11 @@ namespace Desafio4Logic.Services
 
         public async Task<RespostaPadrao> NovoUsuario(UsuarioModel usuarioModel)
         {
+            var cnpjExiste = await _clienteRepository.BuscarClientePorCNPJ(usuarioModel.Cliente.CNPJ);
+
+            if (cnpjExiste != null)
+                return new RespostaPadrao() { Status = System.Net.HttpStatusCode.Conflict, Message = "Já existe um cliente com este CNPJ." };
+
             Usuario usuario = _mapper.Map<Usuario>(usuarioModel);
             Cliente cliente = _mapper.Map<Cliente>(usuarioModel.Cliente);
 
