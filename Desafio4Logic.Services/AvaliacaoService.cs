@@ -38,7 +38,7 @@ namespace Desafio4Logic.Services
             FluentValidation.Results.ValidationResult validarAvaliacao = _validator.Validate(avaliacao);
             if (!validarAvaliacao.IsValid)
             {
-                return new RespostaPadrao() { Status = System.Net.HttpStatusCode.BadRequest, Message = validarAvaliacao.Errors.FirstOrDefault().ErrorMessage };
+                return new RespostaPadrao() { Status = System.Net.HttpStatusCode.BadRequest, Message = validarAvaliacao.Errors.First().ErrorMessage };
             }
 
             avaliacao.IdCliente = idCliente;
