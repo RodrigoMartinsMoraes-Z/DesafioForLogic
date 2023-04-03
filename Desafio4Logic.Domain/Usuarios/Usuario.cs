@@ -1,6 +1,4 @@
-﻿using Desafio4Logic.Domain.Clientes;
-
-namespace Desafio4Logic.Domain.Usuarios
+﻿namespace Desafio4Logic.Domain.Usuarios
 {
     public class Usuario
     {

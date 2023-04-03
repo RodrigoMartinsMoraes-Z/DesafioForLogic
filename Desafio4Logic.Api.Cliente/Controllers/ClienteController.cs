@@ -2,10 +2,8 @@
 using Desafio4Logic.Models;
 using Desafio4Logic.Models.Clientes;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
 namespace Desafio4Logic.Api.Cliente.Controllers
@@ -23,6 +21,9 @@ namespace Desafio4Logic.Api.Cliente.Controllers
 
         [HttpPut]
         [Route("atualizar")]
-        public async Task<RespostaPadrao> AtualizarCliente(ClienteModel model) => await _clienteService.AtualizarCliente(model);
+        public async Task<RespostaPadrao> AtualizarCliente(ClienteModel model)
+        {
+            return await _clienteService.AtualizarCliente(model);
+        }
     }
 }

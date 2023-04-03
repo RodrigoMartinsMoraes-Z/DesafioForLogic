@@ -14,13 +14,16 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Desafio4Logic.Context\Desafio4Logic.Context.csproj" />
+    <ProjectReference Include="..\Desafio4Logic.Interfaces\Desafio4Logic.Interfaces.csproj" />
     <ProjectReference Include="..\Desafio4Logic.ModelMapper\Desafio4Logic.ModelMapper.csproj" />
+    <ProjectReference Include="..\Desafio4Logic.Models\Desafio4Logic.Models.csproj" />
     <ProjectReference Include="..\Desafio4Logic.Repository\Desafio4Logic.Repository.csproj" />
     <ProjectReference Include="..\Desafio4Logic.Services\Desafio4Logic.Services.csproj" />
   </ItemGroup>

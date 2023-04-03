@@ -13,7 +13,7 @@ namespace Desafio4Logic.Models.Clientes
         public string NomeContato { get; set; }
         public string CNPJ { get; set; }
         public Categoria Categoria { get; set; }
-        public DateTime DataCadastro { get;  }
+        public DateTime DataCadastro { get; }
 
         public virtual UsuarioModel Usuario { get; set; }
         public virtual ICollection<AvaliacaoModel> Avaliacoes { get; set; }

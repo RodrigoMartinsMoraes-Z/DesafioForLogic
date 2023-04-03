@@ -1,9 +1,6 @@
-﻿using Desafio4Logic.Models.Avaliacoes;
-using Desafio4Logic.Models;
+﻿using Desafio4Logic.Models;
+using Desafio4Logic.Models.Avaliacoes;
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Desafio4Logic.Interfaces.Services

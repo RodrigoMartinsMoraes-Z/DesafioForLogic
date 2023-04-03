@@ -2,7 +2,6 @@
 using Desafio4Logic.Models;
 using Desafio4Logic.Models.Usuarios;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using System.Threading.Tasks;

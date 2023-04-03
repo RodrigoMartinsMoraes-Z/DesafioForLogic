@@ -8,7 +8,6 @@ using Desafio4Logic.Models.Usuarios;
 
 using FluentValidation;
 
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Desafio4Logic.Services
@@ -32,7 +31,9 @@ namespace Desafio4Logic.Services
             bool senhaCorreta = false;
 
             if (usuarioDb != null)
+            {
                 senhaCorreta = BCrypt.Net.BCrypt.Verify(usuarioModel.Senha, usuarioDb.Senha);
+            }
 
             return senhaCorreta ? new RespostaPadrao() { Status = System.Net.HttpStatusCode.OK, Message = "Login com sucesso." } : new RespostaPadrao() { Status = System.Net.HttpStatusCode.Unauthorized, Message = "Email ou senha inválida." };
         }

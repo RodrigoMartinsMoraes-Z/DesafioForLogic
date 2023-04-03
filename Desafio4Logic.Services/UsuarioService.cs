@@ -36,14 +36,18 @@ namespace Desafio4Logic.Services
 
         public async Task<RespostaPadrao> NovoUsuario(UsuarioModel usuarioModel)
         {
-            var cnpjExiste = await _clienteRepository.BuscarClientePorCNPJ(usuarioModel.Cliente.CNPJ);
+            Cliente cnpjExiste = await _clienteRepository.BuscarClientePorCNPJ(usuarioModel.Cliente.CNPJ);
 
             if (cnpjExiste != null)
+            {
                 return new RespostaPadrao() { Status = System.Net.HttpStatusCode.Conflict, Message = "Já existe um cliente com este CNPJ." };
+            }
 
-            var emailExiste = await _usuarioRepository.BuscarUsuarioPorEmail(usuarioModel.Email);
+            Usuario emailExiste = await _usuarioRepository.BuscarUsuarioPorEmail(usuarioModel.Email);
             if (emailExiste != null)
+            {
                 return new RespostaPadrao() { Status = System.Net.HttpStatusCode.Conflict, Message = "Já existe um usuario com este email." };
+            }
 
             Usuario usuario = _mapper.Map<Usuario>(usuarioModel);
             Cliente cliente = _mapper.Map<Cliente>(usuarioModel.Cliente);
@@ -55,7 +59,7 @@ namespace Desafio4Logic.Services
                 return new RespostaPadrao() { Status = System.Net.HttpStatusCode.BadRequest, Message = isValid.Errors.First().ErrorMessage };
             }
 
-            var usuarioDb = await _usuarioRepository.SalvarUsuario(usuario);
+            Usuario usuarioDb = await _usuarioRepository.SalvarUsuario(usuario);
             cliente.IdUsuario = usuarioDb.Id;
             _ = await _clienteRepository.SalvarCliente(cliente);
 

@@ -1,7 +1,4 @@
-using AutoMapper;
-
 using Desafio4Logic.Context;
-using Desafio4Logic.Domain.Avaliacoes;
 using Desafio4Logic.Domain.Clientes;
 using Desafio4Logic.Interfaces.Context;
 using Desafio4Logic.Interfaces.Repository;
@@ -18,18 +15,10 @@ using FluentValidation.AspNetCore;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Desafio4Logic.Api.Avaliacao
 {
@@ -46,34 +35,34 @@ namespace Desafio4Logic.Api.Avaliacao
         public void ConfigureServices(IServiceCollection services)
         {
             //Registro do banco sql
-            services.AddDbContext<SQLContext>();
+            _ = services.AddDbContext<SQLContext>();
 
             //Registro automapper
-            services.AddAutoMapper(typeof(AvaliacaoModelMapper));
-            services.AddAutoMapper(typeof(ClienteModelMapper));
-            services.AddAutoMapper(typeof(UsuarioModelMapper));
+            _ = services.AddAutoMapper(typeof(AvaliacaoModelMapper));
+            _ = services.AddAutoMapper(typeof(ClienteModelMapper));
+            _ = services.AddAutoMapper(typeof(UsuarioModelMapper));
 
             //Registro de interfaces
-            services.AddScoped<ISQLContext, SQLContext>();
-            services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
-            services.AddScoped<IClienteRepository, ClienteRepository>();
-            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-            services.AddScoped<ILoginService, LoginService>();
-            services.AddScoped<IUsuarioService, UsuarioService>();
-            services.AddScoped<IAvaliacaoService, AvaliacaoService>();
+            _ = services.AddScoped<ISQLContext, SQLContext>();
+            _ = services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
+            _ = services.AddScoped<IClienteRepository, ClienteRepository>();
+            _ = services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            _ = services.AddScoped<ILoginService, LoginService>();
+            _ = services.AddScoped<IUsuarioService, UsuarioService>();
+            _ = services.AddScoped<IAvaliacaoService, AvaliacaoService>();
 
-            services.AddSwaggerGen(c =>
+            _ = services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Avaliacao API", Version = "v1" });
             });
 
-            services.AddControllers();
+            _ = services.AddControllers();
 
             //registro do validator
-            services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
-            services.AddTransient<IValidator<Domain.Usuarios.Usuario>, UsuarioValidator>();
-            services.AddTransient<IValidator<Cliente>, ClienteValidator>();
-            services.AddTransient<IValidator<Domain.Avaliacoes.Avaliacao>, AvaliacaoValidator>();
+            _ = services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+            _ = services.AddTransient<IValidator<Domain.Usuarios.Usuario>, UsuarioValidator>();
+            _ = services.AddTransient<IValidator<Cliente>, ClienteValidator>();
+            _ = services.AddTransient<IValidator<Domain.Avaliacoes.Avaliacao>, AvaliacaoValidator>();
 
         }
 
@@ -82,24 +71,24 @@ namespace Desafio4Logic.Api.Avaliacao
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                _ = app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
+            _ = app.UseSwagger();
+            _ = app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Avaliacao API V1");
             });
 
-            app.UseHttpsRedirection();
+            _ = app.UseHttpsRedirection();
 
-            app.UseRouting();
+            _ = app.UseRouting();
 
-            app.UseAuthorization();
+            _ = app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            _ = app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                _ = endpoints.MapControllers();
             });
         }
     }
