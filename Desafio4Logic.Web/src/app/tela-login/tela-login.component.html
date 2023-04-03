@@ -1,0 +1,13 @@
+<h1>Login</h1>
+<form (submit)="login()">
+  <label>
+    Email:
+    <input type="email" name="email" [(ngModel)]="email">
+  </label>
+  <label>
+    Senha:
+    <input type="password" name="senha" [(ngModel)]="senha">
+  </label>
+  <button type="submit">Entrar</button>
+</form>
+<p *ngIf="error">Erro: {{ error }}</p>

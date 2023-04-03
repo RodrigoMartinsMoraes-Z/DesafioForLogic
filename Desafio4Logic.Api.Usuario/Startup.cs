@@ -75,6 +75,17 @@ namespace Desafio4Logic.Api.Usuario
             services.AddTransient<IValidator<Cliente>, ClienteValidator>();
             services.AddTransient<IValidator<Avaliacao>, AvaliacaoValidator>();
 
+            // Configura o CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,7 +102,7 @@ namespace Desafio4Logic.Api.Usuario
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Usuario API V1");
             });
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -101,6 +112,9 @@ namespace Desafio4Logic.Api.Usuario
             {
                 endpoints.MapControllers();
             });
+
+            // Configura o middleware de CORS
+            app.UseCors("AllowAll");
         }
     }
 }
