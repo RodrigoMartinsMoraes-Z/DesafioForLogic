@@ -8,6 +8,7 @@ namespace Desafio4Logic.Models.Clientes
 {
     public class ClienteModel
     {
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string NomeContato { get; set; }
         public string CNPJ { get; set; }
