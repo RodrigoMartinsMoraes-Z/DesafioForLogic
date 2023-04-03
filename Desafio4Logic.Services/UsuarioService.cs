@@ -23,27 +23,32 @@ namespace Desafio4Logic.Services
         private readonly IValidator<Cliente> _clienteValidator;
         private readonly IMapper _mapper;
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IClienteRepository _clienteRepository;
 
-        public UsuarioService(IValidator<Usuario> validator, IMapper mapper, IUsuarioRepository usuarioRepository, IValidator<Cliente> clienteValidator)
+        public UsuarioService(IValidator<Usuario> validator, IMapper mapper, IUsuarioRepository usuarioRepository, IValidator<Cliente> clienteValidator, IClienteRepository clienteRepository)
         {
             _usuarioValidator = validator;
             _mapper = mapper;
             _usuarioRepository = usuarioRepository;
             _clienteValidator = clienteValidator;
+            _clienteRepository = clienteRepository;
         }
 
         public async Task<RespostaPadrao> NovoUsuario(UsuarioModel usuarioModel)
         {
             Usuario usuario = _mapper.Map<Usuario>(usuarioModel);
+            Cliente cliente = _mapper.Map<Cliente>(usuarioModel.Cliente);
 
-            ValidationResult isValid = await ValidarUsuario(usuario);
+            ValidationResult isValid = await ValidarUsuario(usuario, cliente);
 
-            if (isValid != null || !isValid.IsValid)
+            if (isValid != null && !isValid.IsValid)
             {
                 return new RespostaPadrao() { Status = System.Net.HttpStatusCode.BadRequest, Message = isValid.Errors.First().ErrorMessage };
             }
 
-            _ = await _usuarioRepository.SalvarUsuario(usuario);
+            var usuarioDb = await _usuarioRepository.SalvarUsuario(usuario);
+            cliente.IdUsuario = usuarioDb.Id;
+            _ = await _clienteRepository.SalvarCliente(cliente);
 
             return new RespostaPadrao() { Status = System.Net.HttpStatusCode.OK, Message = "Usuário cadastrado com sucesso" };
         }
@@ -65,21 +70,22 @@ namespace Desafio4Logic.Services
                 _ = new RespostaPadrao() { Status = System.Net.HttpStatusCode.Unauthorized };
             }
 
-            _ = BCrypt.Net.BCrypt.ValidateAndReplacePassword(usuario.Senha, usuarioDb.Senha, novaSenha);
+            usuarioDb.Senha = novaSenha;
+            await _usuarioRepository.AtualizarUsuario(usuarioDb);
 
             return new RespostaPadrao() { Status = System.Net.HttpStatusCode.OK, Message = "Senha alterada com sucesso" };
         }
 
-        private async Task<ValidationResult> ValidarUsuario(Usuario usuario)
+        private async Task<ValidationResult> ValidarUsuario(Usuario usuario, Cliente cliente)
         {
             ValidationResult usuarioValidation = await _usuarioValidator.ValidateAsync(usuario);
-            ValidationResult clienteValidation = await _clienteValidator.ValidateAsync(usuario.Cliente);
+            ValidationResult clienteValidation = await _clienteValidator.ValidateAsync(cliente);
 
-            if (!usuarioValidation.IsValid)
+            if (usuarioValidation != null && !usuarioValidation.IsValid)
             {
                 return usuarioValidation;
             }
-            else if (!clienteValidation.IsValid)
+            else if (clienteValidation != null && !clienteValidation.IsValid)
             {
                 return clienteValidation;
             }

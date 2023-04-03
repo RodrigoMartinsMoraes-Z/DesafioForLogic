@@ -1,11 +1,20 @@
+using AutoMapper;
+
 using Desafio4Logic.Context;
+using Desafio4Logic.Domain.Avaliacoes;
+using Desafio4Logic.Domain.Clientes;
 using Desafio4Logic.Interfaces.Context;
 using Desafio4Logic.Interfaces.Repository;
 using Desafio4Logic.Interfaces.Services;
+using Desafio4Logic.ModelMapper;
 using Desafio4Logic.Repository.Avaliacoes;
 using Desafio4Logic.Repository.Clientes;
 using Desafio4Logic.Repository.Usuarios;
 using Desafio4Logic.Services;
+using Desafio4Logic.Services.Validation;
+
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +24,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 using System;
 using System.Collections.Generic;
@@ -38,6 +48,11 @@ namespace Desafio4Logic.Api.Usuario
             //Registro do banco sql
             services.AddDbContext<SQLContext>();
 
+            //Registro automapper
+            services.AddAutoMapper(typeof(AvaliacaoModelMapper));
+            services.AddAutoMapper(typeof(ClienteModelMapper));
+            services.AddAutoMapper(typeof(UsuarioModelMapper));
+
             //Registro de interfaces
             services.AddScoped<ISQLContext, SQLContext>();
             services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
@@ -45,9 +60,21 @@ namespace Desafio4Logic.Api.Usuario
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
-            //services.AddScoped<>();
+            services.AddScoped<IAvaliacaoService, AvaliacaoService>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Usuario API", Version = "v1" });
+            });
 
             services.AddControllers();
+
+            //registro do validator
+            services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+            services.AddTransient<IValidator<Domain.Usuarios.Usuario>, UsuarioValidator>();
+            services.AddTransient<IValidator<Cliente>, ClienteValidator>();
+            services.AddTransient<IValidator<Avaliacao>, AvaliacaoValidator>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +84,12 @@ namespace Desafio4Logic.Api.Usuario
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Usuario API V1");
+            });
 
             app.UseHttpsRedirection();
 

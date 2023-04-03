@@ -8,17 +8,17 @@ namespace Desafio4Logic.Domain.Usuarios
 
         public int Id { get; set; }
         public string Email { get; set; }
-        public string Senha { get => senha; private set => senha = EncriptarSenha(); }
+        public string Senha { get => senha; set => senha = EncriptarSenha(value); }
 
-        public virtual Cliente Cliente { get; set; }
+        //public virtual Cliente Cliente { get; set; }
 
         /// <summary>
         /// encripta a senha utilizando o email como salt
         /// </summary>
         /// <returns></returns>
-        private string EncriptarSenha()
+        private string EncriptarSenha(string value)
         {
-            return BCrypt.Net.BCrypt.HashPassword(Senha, Email);
+            return BCrypt.Net.BCrypt.HashPassword(value);
         }
     }
 }

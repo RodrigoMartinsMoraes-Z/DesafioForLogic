@@ -2,6 +2,7 @@
 
 using Desafio4Logic.Domain.Avaliacoes;
 using Desafio4Logic.Interfaces.Repository;
+using Desafio4Logic.Interfaces.Services;
 using Desafio4Logic.Models;
 using Desafio4Logic.Models.Avaliacoes;
 
@@ -14,7 +15,9 @@ using System.Threading.Tasks;
 
 namespace Desafio4Logic.Services
 {
-    public class AvaliacaoService
+
+
+    public class AvaliacaoService : IAvaliacaoService
     {
         private readonly IMapper _mapper;
         private readonly IValidator<Avaliacao> _validator;

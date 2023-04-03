@@ -30,7 +30,7 @@ namespace Desafio4Logic.Services
         {
             Usuario usuario = _mapper.Map<Usuario>(usuarioModel);
             FluentValidation.Results.ValidationResult result = await _validator.ValidateAsync(usuario);
-            if (!result.IsValid)
+            if (result != null && !result.IsValid)
             {
                 return new RespostaPadrao() { Status = System.Net.HttpStatusCode.BadRequest, Message = result.Errors.First().ErrorMessage };
             }
