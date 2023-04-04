@@ -35,6 +35,19 @@ namespace Desafio4Logic.Api.Login
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Configura o CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
+
+
             //Registro do banco sql
             _ = services.AddDbContext<SQLContext>();
 
@@ -65,17 +78,7 @@ namespace Desafio4Logic.Api.Login
             _ = services.AddTransient<IValidator<Cliente>, ClienteValidator>();
             _ = services.AddTransient<IValidator<Avaliacao>, AvaliacaoValidator>();
 
-            //// Configura o CORS
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("AllowAll",
-            //        builder =>
-            //        {
-            //            builder.AllowAnyOrigin()
-            //                .AllowAnyMethod()
-            //                .AllowAnyHeader();
-            //        });
-            //});
+     
 
         }
 
@@ -87,6 +90,9 @@ namespace Desafio4Logic.Api.Login
                 _ = app.UseDeveloperExceptionPage();
             }
 
+            // Configura o middleware de CORS
+            app.UseCors("AllowAll");
+
             _ = app.UseSwagger();
             _ = app.UseSwaggerUI(c =>
             {
@@ -97,15 +103,14 @@ namespace Desafio4Logic.Api.Login
 
             _ = app.UseRouting();
 
-            _ = app.UseAuthorization();
+            //_ = app.UseAuthorization();
 
             _ = app.UseEndpoints(endpoints =>
             {
                 _ = endpoints.MapControllers();
             });
 
-            //// Configura o middleware de CORS
-            //app.UseCors("AllowAll");
+      
         }
     }
 }

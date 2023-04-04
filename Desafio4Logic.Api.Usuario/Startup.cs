@@ -45,6 +45,18 @@ namespace Desafio4Logic.Api.Usuario
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Configura o CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
+
             //Registro do banco sql
             services.AddDbContext<SQLContext>();
 
@@ -75,17 +87,7 @@ namespace Desafio4Logic.Api.Usuario
             services.AddTransient<IValidator<Cliente>, ClienteValidator>();
             services.AddTransient<IValidator<Avaliacao>, AvaliacaoValidator>();
 
-            // Configura o CORS
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                            .AllowAnyMethod()
-                            .AllowAnyHeader();
-                    });
-            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -95,6 +97,9 @@ namespace Desafio4Logic.Api.Usuario
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Configura o middleware de CORS
+            app.UseCors("AllowAll");
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -113,8 +118,6 @@ namespace Desafio4Logic.Api.Usuario
                 endpoints.MapControllers();
             });
 
-            // Configura o middleware de CORS
-            app.UseCors("AllowAll");
         }
     }
 }
